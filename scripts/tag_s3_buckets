@@ -1,0 +1,12 @@
+import ast
+import os
+buckets = os.popen('aws s3api list-buckets --query "Buckets[].Name"').read()
+buckets = buckets.replace('\n', "")
+buckets = buckets.replace(" ", "")
+buckets = ast.literal_eval(buckets)
+
+for bucket in buckets:
+    cmd = 'aws s3api put-bucket-tagging --bucket %s --tagging ' \
+        '"TagSet=[{Key=S3-Bucket-Name,Value=%s}]"' % (bucket,bucket)
+    os.popen(cmd)
+    print "Done tagging bucket {}".format(bucket)
