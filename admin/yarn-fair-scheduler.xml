@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<allocations>
+    <queue name="root">
+        <weight>1.0</weight>
+        <schedulingPolicy>drf</schedulingPolicy>
+        <aclSubmitApps>*</aclSubmitApps>
+        <aclAdministerApps>*</aclAdministerApps>
+        <queue name="reader">
+            <weight>1.0</weight>
+            <queue name="0">
+              <weight>1.0</weight>
+            </queue>
+        </queue>
+        <queue name="partitioner">
+            <weight>1.0</weight>
+            <queue name="0">
+              <weight>1.0</weight>
+            </queue>
+        </queue>
+        <queue name="processor">
+            <weight>1.0</weight>
+            <queue name="0">
+              <weight>1.0</weight>
+            </queue>
+        </queue>
+        <queue name="writer">
+            <weight>1.0</weight>
+            <queue name="0">
+              <weight>1.0</weight>
+            </queue>
+        </queue>
+        <queue name="default">
+            <weight>1.0</weight>
+        </queue>
+    </queue>
+    <defaultQueueSchedulingPolicy>drf</defaultQueueSchedulingPolicy>
+    <defaultFairSharePreemptionTimeout>60</defaultFairSharePreemptionTimeout>
+    <queuePlacementPolicy>
+        <rule name="specified" create="true" />
+        <rule name="default" queue="default" />
+    </queuePlacementPolicy>
+</allocations>
