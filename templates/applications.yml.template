@@ -1,0 +1,26 @@
+runners:
+  emr:
+    applications:
+      - Spark
+      - Hive
+    emr_configurations:
+    - Classification: yarn-site
+      Properties:
+        yarn.scheduler.increment-allocation-mb: 1024
+        yarn.resourcemanager.scheduler.class: org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler
+        yarn.scheduler.fair.allocation.file: /mnt/etc/hadoop/conf/yarn-fair-scheduler.xml
+        yarn.scheduler.fair.preemption: true
+        yarn.nodemanager.localizer.cache.target-size-mb: 2048
+        yarn.nodemanager.localizer.cache.cleanup.interval-ms: 60000
+    - Classification: spark-defaults
+      Properties:
+        spark.driver.memory: 20g
+        spark.driver.maxResultSize: 50g
+        spark.kryoserializer.buffer.max: 1024m
+        spark.network.timeout: 10000s
+        spark.scheduler.listenerbus.eventqueue.capacity: 100000
+        spark.serializer: org.apache.spark.serializer.KryoSerializer
+        spark.sql.catalogImplementation: hive
+        spark.sql.sources.partitionColumnTypeInference.enabled: false
+        spark.ui.showConsoleProgress: false
+        spark.yarn.jars: local:/usr/local/lib/python2.7/site-packages/pyspark/jars/*

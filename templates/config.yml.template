@@ -1,0 +1,22 @@
+include:
+  - ../conf/access_keys.yml
+  - ../conf/applications.yml
+  - ../conf/machines.yml
+runners:
+  emr:
+    bootstrap: 
+      - aws s3 cp s3://tg-cloud-store-dev/<user>/aws_bootstrap.sh .
+      - source ./aws_bootstrap.sh
+    cleanup: ALL
+    emr_action_on_failure: CONTINUE
+    enable_emr_debugging: True
+    image_version: 5.15.0
+    label: chios
+    max_mins_idle: 60
+    pool_clusters: True
+    pool_name: <user>
+    region: us-east-1
+    tags:
+      Type: Research
+      User: <user>
+    zone: us-east-1e

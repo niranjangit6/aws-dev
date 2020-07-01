@@ -1,0 +1,6 @@
+runners:
+  emr:
+    core_instance_type: r3.4xlarge
+    num_core_instances: <number of core instances>
+    master_instance_type: r3.4xlarge
+    core_instance_bid_price: '0.45'
