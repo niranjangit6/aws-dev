@@ -1,0 +1,18 @@
+# Extensions.
+.DS_Store
+*.pyc
+*.json
+
+# Directories.
+build/
+conf/
+tmp/
+venv/
+
+# Files.
+access_key.yml
+applications.yml
+config.yml
+machines.yml
+user_aws_bootstrap.sh
+user_config.yml
