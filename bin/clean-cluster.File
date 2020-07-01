@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for instance in $(paste $1);
+do
+	echo $instance;
+	ssh -t $instance \
+		-o "ConnectTimeout=2" \
+		"/bin/bash -l -c 'sudo rm -r /mnt/yarn/usercache/hadoop'";
+done;
